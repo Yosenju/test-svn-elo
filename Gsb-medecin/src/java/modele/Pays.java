@@ -14,6 +14,7 @@ public class Pays {
     private Collection<Dep> lesDeps;
 
     public Pays() {
+        lesDeps=DAO.getLesDeps();
     }
 
     public Collection<Dep> getLesDeps() {
