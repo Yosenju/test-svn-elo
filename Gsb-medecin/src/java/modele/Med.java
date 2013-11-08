@@ -8,7 +8,7 @@ package modele;
  *
  * @author elo
  */
-public class Med {
+public class Med implements Comparable<Med>{
 
     private String nom;
     private String prenom;
@@ -44,6 +44,16 @@ public class Med {
 
     public String getTel() {
         return tel;
+    }
+
+    @Override
+    public int compareTo(Med t) {
+        if (nom.compareTo(t.nom) == 0 ) {
+            return prenom.compareTo(t.prenom);
+        }
+        else {
+            return nom.compareTo(t.nom);
+        }
     }
     
     

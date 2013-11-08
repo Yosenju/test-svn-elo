@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ public class DAO {
 
     static Collection<Dep> getLesDeps() {
 
-        Collection<Dep> lesDeps = new HashSet<Dep>();
+        Collection<Dep> lesDeps = new TreeSet<Dep>();
 
         try {
             Connection con = Connect.get();
@@ -30,7 +31,7 @@ public class DAO {
             ResultSet rs = req.executeQuery("Select distinct departement from medecin;");
 
             while (rs.next()) {
-                Collection<Med> lesMeds = new HashSet<Med>();
+                Collection<Med> lesMeds = new TreeSet<Med>();
                 Statement req2;
                 req2 = con.createStatement();
                 ResultSet rs2 = req2.executeQuery("select * from medecin where departement =" + rs.getString("departement"));
