@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 4 nov. 2013, 11:53:14
+    Document   : listeMeds
+    Created on : 12 nov. 2013, 15:38:23
     Author     : elo
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>Liste des Meds :</h3>
     </body>
 </html>
