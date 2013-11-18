@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,5 +14,21 @@
     </head>
     <body>
         <h3>Liste des Meds :</h3>
+        <table class="listeLegere">
+             <th>Nom</th>
+             <th>Prénom</th>
+             <th>Adresse</th>
+             <th>Numéro</th>
+             <th>Spécialité</th>
+             
+        <c:forEach var="med" items="${listeMeds}">
+            <tr>
+            <td>${med.nom} </td>
+            <td>${med.prenom}</td>
+            <td> ${med.adresse}</td> 
+            <td>${med.tel} </td>
+            <td>${med.spe}</td>
+            </tr>
+             </c:forEach>  
     </body>
 </html>

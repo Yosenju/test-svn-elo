@@ -14,13 +14,13 @@
     </head>
     <body>
         <h3> Liste des Deps : </h3>
-        <form>
-        <select name="dep">
-        <c:forEach var="choix" items="${listeDeps}">
-            <option value="${choix.num}">${choix.num}</option>
+        <form action="Control?choix=listedep" method="post">
+        <select name="dep" >
+        <c:forEach var="dep" items="${listeDep}">
+            <option value="${dep.num}">${dep.num}</option>
              </c:forEach>   
         </select>
-            <input type="submit" value="Envoyer">
+            <input type="submit"  value="Envoyer">
         </form>
     </body>
 </html>

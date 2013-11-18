@@ -22,7 +22,7 @@ import modele.Pays;
  */
 public class Control extends HttpServlet {
 
-    private Pays p;
+    private Pays p = new Pays();
 
     /**
      * Processes requests for both HTTP
@@ -36,17 +36,27 @@ public class Control extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String page;
+        String page = null;
         String choix;
         choix = request.getParameter("choix");
-        if (choix != null) {
-            Collection<Med> m = p.getLesDeps(choix).getLesMeds();
-            request.setAttribute("listeMeds",m);
-            page = "listeMeds.jsp";
-        } else {
+
+        if (choix == null) {
+            page = "accueil.jsp";
+        } else if (choix.equals("listedep")) {
+            String dep = request.getParameter("dep");
+            if (dep == null) {
+                Collection<Dep> d = p.getLesDeps();
+                request.setAttribute("listeDep", d);
+                page = "listeDeps.jsp";
+            } else {
+                Collection<Med> m = p.getLeDep(dep).getLesMeds();
+                request.setAttribute("listeMeds", m);
+                page = "listeMeds.jsp";
+            }
+        } else if (choix.equals("listeparnom")) {
             Collection<Dep> d = p.getLesDeps();
             request.setAttribute("listeDeps", d);
-            page = "listeDeps.jsp";
+            page = "listeMeds.jsp";
         }
         request.getRequestDispatcher(page).forward(request, response);
     }
