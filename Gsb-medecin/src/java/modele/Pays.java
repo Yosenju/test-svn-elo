@@ -21,5 +21,13 @@ public class Pays {
         return lesDeps;
     }
     
+    public Dep getLeDep(String num) {
+        for (Dep d : lesDeps) {
+            if (d.getNum().equals(num)) {
+                return d;
+            }
+        }
+        return null;
+    }
     
 }
