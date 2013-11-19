@@ -7,6 +7,7 @@ package controleur;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.TreeSet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,9 +55,22 @@ public class Control extends HttpServlet {
                 page = "listeMeds.jsp";
             }
         } else if (choix.equals("listeparnom")) {
-            Collection<Dep> d = p.getLesDeps();
-            request.setAttribute("listeDeps", d);
-            page = "listeMeds.jsp";
+            String nom = request.getParameter("nom");
+            if (nom == null) {
+                page = "saisieNom.jsp";
+            } else {
+                Collection<Med> m = new TreeSet<Med>();
+                for (Dep leDep : p.getLesDeps()) {
+                    for (Med leMed : leDep.getLesMeds()) {
+                        if (leMed.getNom().startsWith(nom)) {
+                            m.add(leMed);
+                        }
+                    }
+                }
+                request.setAttribute("listeMeds", m);
+                page = "listeMeds.jsp";
+            }
+
         }
         request.getRequestDispatcher(page).forward(request, response);
     }
