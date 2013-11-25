@@ -9,13 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:include page="entete.jsp"/>      
+        <jsp:include page="sommaire.jsp"/>
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Galaxy Swiss Bourdin</h1>
-        
-        
-        <a href="Control?choix=listedep" > Liste par Departement </a><br/>
-        <a href="Control?choix=listeparnom" > Liste par Nom </a>
+        <div id="contenu">
+            <h1>Galaxy Swiss Bourdin</h1>
+        </div>
     </body>
 </html>

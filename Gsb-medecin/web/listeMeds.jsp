@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <jsp:include page="entete.jsp"/>      
+        <jsp:include page="sommaire.jsp"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div id="contenu">
         <h3>Liste des Meds :</h3>
         <table class="listeLegere">
             <th>Nom</th>
@@ -30,5 +33,6 @@
                     <td>${med.spe}</td>
                 </tr>
             </c:forEach>  
+        </div>       
     </body>
 </html>
