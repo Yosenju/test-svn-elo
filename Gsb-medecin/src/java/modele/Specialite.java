@@ -5,6 +5,7 @@
 package modele;
 
 import java.util.Collection;
+import java.util.TreeSet;
 
 /**
  *
@@ -12,24 +13,26 @@ import java.util.Collection;
  */
 public class Specialite implements Comparable<Specialite>{
     private String nom;
-    private Collection<Med> lesMeds;
+    private Collection<Med> lesMeds=new TreeSet<Med>();
 
-    public Specialite(String nom, Collection<Med> lesMeds) {
+    public Specialite(String nom) {
         this.nom = nom;
-        this.lesMeds = lesMeds;
     }
 
     public Collection<Med> getLesMeds() {
         return lesMeds;
     }
 
-    public String getNum() {
+    public String getNom() {
         return nom;
     }
 
     @Override
-    public int compareTo(Specialite s) {
-        
+    public int compareTo(Specialite s) {      
             return nom.compareTo(s.nom);
+    }
+
+    void addUnMed(Med unMed) {
+       this.lesMeds.add(unMed); 
     }
 }
