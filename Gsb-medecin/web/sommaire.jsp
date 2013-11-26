@@ -17,5 +17,8 @@
         <li class="smenu">   
             <a href="Control?choix=listeparnom" > Liste par Nom </a>
         </li>
+        <li class="smenu">   
+            <a href="Control?choix=listespe" > Liste des Médecins par Spécialités</a>
+        </li>
     </ul>
 </div>

@@ -30,7 +30,11 @@ public class DAO {
             req = con.createStatement();
             ResultSet rs = req.executeQuery("Select distinct departement from medecin;");
 
-//            while (rs.next()) {
+            while (rs.next()) {
+
+                Dep d = new Dep(rs.getString("departement"));
+                lesDeps.add(d);
+
 //                Collection<Med> lesMeds = new TreeSet<Med>();
 //                Statement req2;
 //                req2 = con.createStatement();
@@ -39,23 +43,50 @@ public class DAO {
 //                    Med m = new Med(rs2.getString("nom"), rs2.getString("prenom"), rs2.getString("adresse"), rs2.getString("tel"),
 //                            rs2.getString("specialitecomplementaire"), rs2.getString("id"));
 //                    lesMeds.add(m);
-//                }
-                Dep d = new Dep(rs.getString("departement"), null);
-                lesDeps.add(d);
-            
-            Collection<Specialite> lesSpe = new TreeSet<Specialite>();
-            Statement req3;
-            req3 = con.createStatement();
-            ResultSet rs3 = req3.executeQuery("Select distinct specialitecomplementaire from medecin;");
-            Specialite s = new Specialite(rs.getString("specialitecomplementaire"), null);
-            lesSpe.add(s);
+            }
 
-//            }
         } catch (SQLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lesDeps;
+    }
 
+    static Collection<Specialite> getLesSpe() {
+        Collection<Specialite> lesSpe = new TreeSet<Specialite>();
+        try {
+            Connection con = Connect.get();
+            Statement req;
+            req = con.createStatement();
+            ResultSet rs = req.executeQuery("Select distinct specialitecomplementaire from medecin"
+                    + " where specialitecomplementaire is not null;");
+            while (rs.next()) {
+                Specialite s = new Specialite(rs.getString("specialitecomplementaire"));
+                lesSpe.add(s);
+            }
 
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lesSpe;
+
+    }
+
+    static Collection<Med> getLesMeds() {
+        Collection<Med> lesMeds = new TreeSet<Med>();
+        try {
+            Connection con = Connect.get();
+            Statement req;
+            req = con.createStatement();
+            ResultSet rs = req.executeQuery("select * from medecin ;");
+            while (rs.next()) {
+                Med m = new Med(rs.getString("nom"), rs.getString("prenom"), rs.getString("adresse"), rs.getString("tel"),
+                        rs.getString("specialitecomplementaire"), rs.getString("id"), rs.getString("departement"));
+                lesMeds.add(m);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lesMeds;
     }
 }
