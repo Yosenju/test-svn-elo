@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import modele.Dep;
 import modele.Med;
 import modele.Pays;
+import modele.Specialite;
 
 /**
  *
@@ -70,8 +71,19 @@ public class Control extends HttpServlet {
                 request.setAttribute("listeMeds", m);
                 page = "listeMeds.jsp";
             }
-
-        }
+            
+        }else if (choix.equals("listeSpe")) {
+            String spe = request.getParameter("spe");
+            if (spe == null) {
+                Collection<Specialite> s = p.getLesSpe();
+                request.setAttribute("listeSpe", s);
+                page = "listeSpe.jsp";
+            } else {
+                Collection<Med> m = p.getLaSpe(spe).getLesMeds();
+                request.setAttribute("listeMeds", m);
+                page = "listeMeds.jsp";
+            }
+        } 
         request.getRequestDispatcher(page).forward(request, response);
     }
 
